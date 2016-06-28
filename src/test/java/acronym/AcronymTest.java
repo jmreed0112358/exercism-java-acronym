@@ -2,9 +2,29 @@ package acronym;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class AcronymTest {
 
+	@Test
+	public void test_generate_InvalidInput_EmptyString_ExpectedResult() {
+		final String phrase = "";
+        final String expected = "";
+        assertEquals(expected, Acronym.generate(phrase));
+	}
+	
+	@Test
+	public void test_generate_InvalidInput_NullString_ThrowsException() {
+		try {
+			Acronym.generate( null );
+			fail("Supposed to catch NullPointerException");
+		} catch ( NullPointerException npe ) {
+			
+		} catch ( Exception e ) {
+			fail("Expected to catch NullPointerException");
+		}
+	}
+	
     @Test
     public void fromTitleCasedPhrases() {
         final String phrase = "Portable Network Graphics";
